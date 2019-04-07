@@ -27,5 +27,4 @@ dependencies {
 
     api 'com.squareup.okhttp3:okhttp:3.11.0'
     api 'com.alibaba:fastjson:1.2.51'
-    api 'com.alibaba:fastjson:1.2.51.android'
 }
