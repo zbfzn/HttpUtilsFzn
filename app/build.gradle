@@ -25,9 +25,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation('com.squareup.okhttp3:okhttp:3.8.1') {
+    api('com.squareup.okhttp3:okhttp:3.8.1') {
         exclude group: 'com.squareup.okio'
     }
-    implementation 'com.alibaba:fastjson:1.2.51'
-    implementation 'com.alibaba:fastjson:1.2.51.android'
+    api 'com.alibaba:fastjson:1.2.51'
+    api 'com.alibaba:fastjson:1.2.51.android'
 }
