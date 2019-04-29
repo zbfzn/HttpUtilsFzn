@@ -96,12 +96,16 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
                 }
                 @Override
                 public void Done(JSONObject data){
+                    rcall.beforeResult();
+
                     if(data.getIntValue("code")==0){
                         rcall.success(data.getString("content"));
                     }else{
                         rcall.fialed(errorManager,data.getString("content"));
                     }
                     errorManager.freshErrMessages();
+
+                    rcall.afterResult();
                 }
             });
             tasks.add(httpTask);
@@ -166,12 +170,16 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
                  }
                  @Override
                  public void Done(JSONObject data){
+                     rcall.beforeResult();
+
                      if(data.getIntValue("code")==0){
                          rcall.success(data.getString("content"));
                      }else{
                          rcall.fialed(errorManager,data.getString("content"));
                      }
                      errorManager.freshErrMessages();
+
+                     rcall.afterResult();
                  }
              });
              tasks.add(httpTask);
@@ -239,8 +247,10 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
          }
     }
    public interface RequestCallBack{
+         void beforeResult();
         void success(String data);
         void fialed(RequestErrorManager errorManager, String error_data);
+        void afterResult();
     }
     interface TaskListener{
         JSONObject Do();
