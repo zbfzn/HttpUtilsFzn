@@ -35,6 +35,7 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
             tasks=new ArrayList<>();
      }
     public void requestPost(final String url, final String[] header_strs, final FznData fznData, final RequestCallBack rcall, final RequestErrorManager errorManager){//json、text、form
+         rcall.beforeRequest();
         if(url.contains("http://")||url.contains("https://")){
             HttpTask httpTask=excuteTask(new TaskListener() {
                 @Override
@@ -104,8 +105,6 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
                         rcall.fialed(errorManager,data.getString("content"));
                     }
                     errorManager.freshErrMessages();
-
-                    rcall.afterResult();
                 }
             });
             tasks.add(httpTask);
@@ -117,6 +116,7 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
 
     }
     public void requestGet(final String url, final String[] header_strs, final RequestCallBack rcall, final RequestErrorManager errorManager){
+         rcall.beforeRequest();
          if(url.contains("http://")||url.contains("https://")){
              HttpTask httpTask=excuteTask(new TaskListener() {
                  @Override
@@ -178,8 +178,6 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
                          rcall.fialed(errorManager,data.getString("content"));
                      }
                      errorManager.freshErrMessages();
-
-                     rcall.afterResult();
                  }
              });
              tasks.add(httpTask);
@@ -250,7 +248,7 @@ public class HttpUtilFzn{//erro方法最后调用,failed返回“”空字符串
          void beforeResult();
         void success(String data);
         void fialed(RequestErrorManager errorManager, String error_data);
-        void afterResult();
+        void beforeRequest();
     }
     interface TaskListener{
         JSONObject Do();
